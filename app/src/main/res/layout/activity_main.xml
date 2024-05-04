@@ -1,65 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
-
-
-    <EditText
-        android:id="@+id/username"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Name" />
-
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:hint="Password"/>
-
-    <CheckBox
-        android:id="@+id/checkBox1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="BCA" />
-
-    <CheckBox
-        android:id="@+id/checkBox2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="MCA" />
-
-    <CheckBox
-        android:id="@+id/checkBox3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="MBA" />
-
-    <RadioGroup
-        android:id="@+id/genderRadioGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/maleRadio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Male" />
-
-        <RadioButton
-            android:id="@+id/femaleRadio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Female" />
-    </RadioGroup>
+    tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
+        android:id="@+id/buttonOpenWebsite"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register" />
-</LinearLayout>
+        android:text="Open Website"
+        android:layout_centerInParent="true"/>
+
+</RelativeLayout>
