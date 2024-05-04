@@ -1,70 +1,44 @@
 package com.example.assignment;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.ListView;
+import androidx.appcompat.app.AppCompatActivity;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText usernameEdit, passwordEdit;
-    CheckBox checkBox1, checkBox2, checkBox3;
-    RadioGroup genderRadioGroup;
-    Button registerButton;
+    private EditText editText;
+    private Button addButton;
+    private ListView listView;
+    private ArrayList<String> itemList;
+    private ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        usernameEdit = findViewById(R.id.username);
-        passwordEdit = findViewById(R.id.password);
-        checkBox1 = findViewById(R.id.checkBox1);
-        checkBox2 = findViewById(R.id.checkBox2);
-        checkBox3 = findViewById(R.id.checkBox3);
-        genderRadioGroup = findViewById(R.id.genderRadioGroup);
-        registerButton = findViewById(R.id.button);
+        editText = findViewById(R.id.editText);
+        addButton = findViewById(R.id.addButton);
+        listView = findViewById(R.id.listView);
 
-        registerButton.setOnClickListener(new View.OnClickListener() {
+        itemList = new ArrayList<>();
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, itemList);
+        listView.setAdapter(adapter);
+
+        addButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                String username = usernameEdit.getText().toString();
-                String password = passwordEdit.getText().toString();
-
-                StringBuilder courseSelection = new StringBuilder();
-                if(checkBox1.isChecked()) {
-                    courseSelection.append("BCA");
+            public void onClick(View v) {
+                String item = editText.getText().toString();
+                if (!item.isEmpty()) {
+                    itemList.add(item);
+                    adapter.notifyDataSetChanged();
+                    editText.setText("");
                 }
-                if (checkBox2.isChecked()) {
-                    courseSelection.append("MCA");
-                }
-                if (checkBox3.isChecked()) {
-                    courseSelection.append("MBA");
-                }
-
-                int genderId = genderRadioGroup.getCheckedRadioButtonId();
-                RadioButton selectedGender = findViewById(genderId);
-                String gender = selectedGender != null ? selectedGender.getText().toString() : "Gender not selected";
-
-                String message = "Username: " + username + "\nPassword: " + password + "\nCourse Selection: " + (courseSelection.length() > 0 ? courseSelection.toString(): "No Course Selectee") + "\nGender: " + gender;
-
-                View layout = getLayoutInflater().inflate(R.layout.content_main, null);
-
-                TextView text = layout.findViewById(R.id.toastText);
-                text.setText(message);
-
-                Toast toast = new Toast(getApplicationContext());
-                toast.setDuration(Toast.LENGTH_LONG);
-                toast.setView(layout);
-                toast.show();
-
             }
         });
     }
